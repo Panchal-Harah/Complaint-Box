@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+        <title>Report</title>
+    </head>
+    <body>
+        <!--navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <div class="container">
+                <img src="{% static 'images/complainticon.webp' %}" class="images" alt="">
+                <a class="navbar-brand" href="#">
+                    <span class="text-warning">Complaint</span>Box </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#complaint"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#re-opencomplaint"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#complaintstatus"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#feedback"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'accounts:E_login' %}"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--navbar -->
+        <section class="vh-100 section-padding" style="background-color: #eee;">
+            <div class="container">
+                <div class="row">
+                    <div class=" fs-2">
+                        <table class="table table-striped table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Report Name</th>
+                                    <th>Generate</th>
+                                </tr><br>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Complaint report(All Complaints)</td>
+                                    <td>
+                                        <a class="btn-warning btn-lg text-decoration-none text-end" href="{% url 'cr' %}">Click</a>                
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>City report</td>
+                                    <td> {% comment %}  <a class="btn-warning btn-lg text-decoration-none text-end" href="{% url 'city' %}">Click</a> {% endcomment %}
+                                        <form method="get" action="/report/cityreport" class="d-flex">
+                                            <input class="form-control me-1" name="query" id="search" type="search" placeholder="Search" aria-label="Search">
+                                            <button class="btn btn-warning" type="submit">Click</button>
+                                        </form> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Complaint_type report</td>
+                                    <td>{% comment %} <a class="btn-warning btn-lg text-decoration-none text-end" href="{% url 'complaint_type' %}">Click</a>  {% endcomment %}
+                                        <form method="get" action="/report/complaint_type" class="d-flex">
+                                            <input class="form-control me-1" name="query" id="search" type="search" placeholder="Search" aria-label="Search">
+                                            <button class="btn btn-warning" type="submit">Click</button>
+                                        </form> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Feedback report(All Feedback)</td>
+                                    <td><a class="btn-warning btn-lg text-decoration-none text-end" href="{% url 'feedback' %}">Click</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Status report</td>
+                                    <td>{% comment %} <a class="btn-warning btn-lg text-decoration-none text-end" href="{% url 'status' %}">Click</a> {% endcomment %}
+                                        <form method="get" action="/report/statusreport" class="d-flex">
+                                            <input class="form-control me-1" name="query" id="search" type="search" placeholder="Search" aria-label="Search">
+                                            <button class="btn btn-warning" type="submit">Click</button>
+                                        </form> 
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        {% comment %} Complaint report(All Complaints) - <a class="btn-warning btn-lg text-decoration-none text-end" href="{% url 'cr' %}">Click</a><br><br>
+                        City report(Only Ahmedabad) - <a class="btn-warning btn-lg text-decoration-none text-end" href="{% url 'city' %}">Click</a><br><br>
+                        Complaint_type report(Only Rainwater Drainage) - <a class="btn-warning btn-lg text-decoration-none text-end" href="{% url 'complaint_type' %}">Click</a><br><br>
+                        Feedback report(All Feedback) - <a class="btn-warning btn-lg text-decoration-none text-end" href="{% url 'feedback' %}">Click</a><br><br>
+                        Status report(All Status) - <a class="btn-warning btn-lg text-decoration-none text-end" href="{% url 'status' %}">Click</a><br><br> {% endcomment %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
+
+

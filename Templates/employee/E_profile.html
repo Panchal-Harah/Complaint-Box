@@ -1,0 +1,319 @@
+{% load static %}
+<!Doctype html>
+<html>
+    <head>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!------ Include the above in your HEAD tag ---------->
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!------ Include the above in your HEAD tag ---------->
+        <!-- <head> -->
+        <title>Employee Profile Page</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="{% static 'css/emp.css' %}">
+    </head>
+    <body>
+        <!--navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <div class="container">
+                <img src="{% static 'images/complainticon.webp' %}" class="images" alt="">
+                <a class="navbar-brand" href="{% url 'employee:ehome' %}">
+                    <span class="text-warning">Complaint</span>Box </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'employee:ehome' %}"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'employee:empabout' %}"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'employee:empdetails' %}"></a>
+                        </li>
+                        {% comment %} <li class="nav-item">
+                            <a class="nav-link" href="{% url 'employee:empstatus' %}"></a>
+                        </li> {% endcomment %}
+                        <li class="nav-item">
+                            <div class="dropdown"> {% comment %} <button class="btn btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"> REGISTER </button> {% endcomment %} <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'accounts:uregistration' %}"></a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'accounts:empregistration' %}"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown"> {% comment %} <button class="btn btn dropdown-toggle " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-person-lines-fill"></i>
+                                </button> {% endcomment %} <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'accounts:E_login' %}"></a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'accounts:E_profile' %}"></a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'accounts:E_logout' %}"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--navbar -->
+        <section class="bg-dark pt-lg-5 mt-5 ">
+            <div class="container bg-white">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!--Breadcrumb-->
+                        <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg
+													xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+                            <ol class="breadcrumb pt-3">
+                                <li class="breadcrumb-item">
+                                    <a href="{% url 'employee:ehome' %}">Home</a>
+                                </li>
+                                <li class="breadcrumb-item active fs-4" aria-current="page">profile</li>
+                            </ol>
+                        </nav>
+                        <!--Breadcrumb-->
+                        <div>
+                            <form class="form" method="POST" id="registrationForm" enctype="multipart/form-data" novalidate> {% csrf_token %} {{ user_form.non_field_errors }}
+                                {{ profile_form.non_field_errors }}
+                                <hr>
+                                <div class="container bootstrap snippet">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="text-center"> {% if not image.profile_pic.url %} <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar"> {% else %} <img src="{{image.profile_pic.url}}" class="avatar img-circle img-thumbnail" alt="avatar"> {% endif %} <h6>Upload a different photo...</h6>
+                                                {{profile_form.profile_pic}}
+                                            </div>
+                                        </div>
+                                        <!--/col-3-->
+                                        <div class="col-sm-9">
+                                            <div class="tab-content"> {% if messages %} {% for message in messages %} <span {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>{{message}}</span>
+                                                 {% endfor %} {% endif %} <div class="tab-pane active">
+                                                    <div class="form-group">
+                                                        <div class="col-xs-6">
+                                                            <label for="username">
+                                                                <h4>{{user_form.username.label_tag}}</h4>
+                                                            </label>
+                                                            {{user_form.username}}
+                                                            <span class="errorlist">{{user_form.username.errors}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-xs-6">
+                                                            <label for="first_name">
+                                                                <h4>{{user_form.first_name.label_tag}}</h4>
+                                                            </label>
+                                                            {{user_form.first_name}}
+                                                            <span class="errorlist">{{user_form.first_name.errors}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-xs-6">
+                                                            <label for="last_name">
+                                                                <h4>{{user_form.last_name.label_tag}}</h4>
+                                                            </label>
+                                                            {{user_form.last_name}}
+                                                            <span class="errorlist">{{user_form.last_name.errors}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-xs-6">
+                                                            <label for="email">
+                                                                <h4>{{user_form.email.label_tag}}</h4>
+                                                            </label>
+                                                            {{user_form.email}}
+                                                            <span class="errorlist">{{user_form.email.errors}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-xs-6">
+                                                            <label for="phone">
+                                                                <h4>{{profile_form.tel.label_tag}}</h4>
+                                                            </label>
+                                                            {{profile_form.tel}}
+                                                            <span class="errorlist">{{profile_form.tel.errors}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-xs-6">
+                                                            <label for="age">
+                                                                <h4>{{profile_form.age.label_tag}}</h4>
+                                                            </label>
+                                                            {{profile_form.age}}
+                                                            <span class="errorlist">{{profile_form.age.errors}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-xs-6">
+                                                            <label for="gender">
+                                                                <h4>{{profile_form.gender.label_tag}}</h4>
+                                                            </label>
+                                                            {{profile_form.gender}}
+                                                            <span class="errorlist">{{profile_form.gender.errors}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-xs-6">
+                                                            <label for="city">
+                                                                <h4>{{profile_form.city.label_tag}}</h4>
+                                                            </label>
+                                                            {{profile_form.city}}
+                                                            <span class="errorlist">{{profile_form.city.errors}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-xs-6">
+                                                            <label for="area">
+                                                                <h4>{{profile_form.area.label_tag}}</h4>
+                                                            </label>
+                                                            {{profile_form.area}}
+                                                            <span class="errorlist">{{profile_form.area.errors}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-xs-6">
+                                                            <label for="address">
+                                                                <h4>{{profile_form.address.label_tag}}</h4>
+                                                            </label>
+                                                            {{profile_form.address}}
+                                                            <span class="errorlist">{{profile_form.address.errors}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-xs-6">
+                                                            <label for="join_date">
+                                                                <h4>{{profile_form.join_date.label_tag}}</h4>
+                                                            </label>
+                                                            {{profile_form.join_date}}
+                                                            <span class="errorlist">{{profile_form.join_date.errors}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-xs-12">
+                                                            <br>
+                                                            <input class="btn btn-lg btn-warning" type="submit" value="submit">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/tab-pane-->
+                                    </div>
+                                </div>
+                            </form>
+                            <center>
+                                <div class="col-xs-9">
+                                    <br>
+                                    <a href="{% url 'accounts:E_set_password' %}">
+                                        <button class="btn btn-lg btn-warning">Change Password</button>
+                                    </a>
+                                    <a href="{% url 'accounts:E_logout' %}">
+                                        <button class="btn btn-lg btn-warning">Logout</button>
+                                    </a>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="bg-dark text-center text-white">
+            <!-- Grid container -->
+            <div class="container p-4">
+                <!-- Section: Text -->
+                <h3>
+                    <img src="{% static 'images/complainticon.webp' %}" class="images" alt="">Complaint Box
+                </h3>
+                <br />
+                <section>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p class="text-start"> The Complaint Boxis a web based enterprise solution enhance citizen satisfaction through comprehensive service management and efficient service delivery. Complaint Boxautomates entire complaint process, right from registration to closure. It also enforces service level policies to ensure the complaint gets attended within desired timeline or gets escalated to higher authorities for their attention and intervention. </p>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Section: Text -->
+                <!-- Section: Links -->
+                <section class="">
+                    <!--Grid row-->
+                    <div class="row">
+                        <!--Grid column-->
+                        <div class="col-lg-3 col-md-6 mb-4 mb-md-0 border-end">
+                            <a href="{% url 'employee:ehome' %}" class="text-white text-decoration-none">
+                                <h5 class="text-uppercase text-start">Home</h5>
+                                <br>
+                            </a>
+                        </div>
+                        <!--Grid column-->
+                        <!--Grid column-->
+                        <div class="col-lg-3 col-md-6 mb-4 mb-md-0 border-end">
+                            <a href="{% url 'employee:empabout' %}" class="text-white text-decoration-none">
+                                <h5 class="text-uppercase text-start">about us</h5>
+                                <br>
+                            </a>
+                        </div>
+                        <!--Grid column-->
+                        <!--Grid column-->
+                        <div class="col-lg-3 col-md-6 mb-4 mb-md-0 border-end">
+                            <a href="{% url 'employee:empdetails' %}" class="text-white text-decoration-none">
+                                <h5 class="text-uppercase text-start">complaint details</h5>
+                                <br>
+                            </a>
+                        </div>
+                        <!--Grid column-->
+                        <!--Grid column-->
+                        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                            <a href="{% url 'employee:empfeedback' %}" class="text-white text-decoration-none">
+                                <h5 class="text-uppercase text-start">view feedback</h5>
+                            </a>
+                        </div>
+                        <!--Grid column-->
+                    </div>
+                    <!--Grid row-->
+                </section>
+                <!-- Section: Links -->
+            </div>
+            <!-- Grid container -->
+            <br />
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);"> © 2022 Copyright: <a class="text-white text-decoration-none" href="{% url 'employee:ehome' %}">Complaint Box</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+        <script>
+            $(document).ready(function() {
+                var readURL = function(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            $('.avatar').attr('src', e.target.result);
+                        }
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+                $(".file-upload").on('change', function() {
+                    readURL(this);
+                });
+            });
+        </script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</html>

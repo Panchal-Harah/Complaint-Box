@@ -1,0 +1,200 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Employee Home</title>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="{% static 'css/emp.css' %}">
+    </head>
+    <body>
+        <!--navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <div class="container">
+                <img src="{% static 'images/complainticon.webp' %}" class="images" alt="">
+                <a class="navbar-brand" href="{% url 'employee:ehome' %}">
+                    <span class="text-warning">Complaint</span>Box </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'employee:ehome' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'employee:empabout' %}">About us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'employee:empdetails' %}">Complaint Details</a>
+                        </li>
+                        {% comment %} <li class="nav-item">
+                            <a class="nav-link" href="{% url 'employee:empfeedback' %}">view feedback</a>
+                        </li> {% endcomment %}
+                        {% comment %} <li class="nav-item">
+                            <div class="dropdown">
+                                <button class="btn btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"> REGISTER </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'accounts:uregistration' %}">User</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'accounts:empregistration' %}">Employee</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li> {% endcomment %}
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <button class="btn btn dropdown-toggle " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-person-lines-fill"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'accounts:E_login' %}">Login</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'accounts:E_profile' %}">Profile</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'accounts:E_logout' %}">Logout</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--navbar -->
+        <section id="about" class="about section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+                        <div class="card">
+                            <div class="title">Total Complaints</div>
+                            <i class="zmdi zmdi-upload"></i>
+                            <div class="value">{{count.username__count}}</div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+                        <div class="green">
+                            <div class="title">complete complaints</div>
+                            <i class="zmdi zmdi-upload"></i>
+                            <div class="value">{{Completed}}</div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+                        <div class="orange">
+                            <div class="title">process complaints</div>
+                            <i class="zmdi zmdi-download"></i>
+                            <div class="value">{{under}}</div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+                        <div class="red">
+                            <div class="title">pandding complaints</div>
+                            <i class="zmdi zmdi-download"></i>
+                            <div class="value">{{pandding}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- about section -->
+        <section id="about" class="about section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-12">
+                        <div class="about-img">
+                            <img src="{% static 'images/about.webp' %}" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-12 ps-lg-5 mt-md-5">
+                        <div class="about-text">
+                            <h1>We provide best quality <br> Services Ever </h1>
+                            <p>Complaint Boxautomates entire complaint process, right from registration to closure. It also enforces service level policies to ensure the complaint gets attended within desired timeline or gets escalated to higher authorities for their attention and intervention.</p>
+                            <a href="{% url 'employee:empabout' %}" class="btn btn-warning">learn more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- about section -->
+        <footer class="bg-dark text-center text-white">
+            <!-- Grid container -->
+            <div class="container p-4">
+                <!-- Section: Text -->
+                <h3>
+                    <img src="{% static 'images/complainticon.webp' %}" class="images" alt="">Complaint Box
+                </h3>
+                <br />
+                <section>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p class="text-start"> The Complaint Boxis a web based enterprise solution enhance citizen satisfaction through comprehensive service management and efficient service delivery. Complaint Boxautomates entire complaint process, right from registration to closure. It also enforces service level policies to ensure the complaint gets attended within desired timeline or gets escalated to higher authorities for their attention and intervention. </p>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Section: Text -->
+                <!-- Section: Links -->
+                <section class="container">
+                    <!--Grid row-->
+                    <div class="row">
+                        <!--Grid column-->
+                        <div class="col-lg-4 col-md-6 mb-4 mb-md-0 border-end">
+                            <a href="{% url 'employee:ehome' %}" class="text-white text-decoration-none">
+                                <h5 class="text-uppercase text-start">Home</h5>
+                                <br>
+                            </a>
+                        </div>
+                        <!--Grid column-->
+                        <!--Grid column-->
+                        <div class="col-lg-4 col-md-6 mb-4 mb-md-0 border-end">
+                            <a href="{% url 'employee:empabout' %}" class="text-white text-decoration-none">
+                                <h5 class="text-uppercase text-start">about us</h5>
+                                <br>
+                            </a>
+                        </div>
+                        <!--Grid column-->
+                        <!--Grid column-->
+                        <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                            <a href="{% url 'employee:empdetails' %}" class="text-white text-decoration-none">
+                                <h5 class="text-uppercase text-start">complaint details</h5>
+                                <br>
+                            </a>
+                        </div>
+                        <!--Grid column-->
+                        <!--Grid column--> {% comment %} <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                            <a href="{% url 'employee:empstatus' %}" class="text-white text-decoration-none">
+                                <h5 class="text-uppercase text-start">generate status</h5>
+                            </a>
+                        </div> {% endcomment %} 
+                        {% comment %} <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                            <a href="{% url 'employee:empfeedback' %}" class="text-white text-decoration-none">
+                                <h5 class="text-uppercase text-start">view feedback</h5>
+                            </a>
+                        </div> {% endcomment %}
+                        <!--Grid column-->
+                    </div>
+                    <!--Grid row-->
+                </section>
+                <!-- Section: Links -->
+            </div>
+            <!-- Grid container -->
+            <br />
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);"> © 2022 Copyright: <a class="text-white text-decoration-none" href="{% url 'employee:ehome' %}">Complaint Box</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    </body>
+</html>

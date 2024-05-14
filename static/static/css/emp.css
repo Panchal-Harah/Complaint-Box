@@ -1,0 +1,39 @@
+.card {
+	border-radius: 8px;
+	color: black;
+	padding: 10px;
+	position: relative;
+    background-color: #2298F1;
+}
+.title {
+    display: inline-block;
+    font-size: 28px;
+    padding: 10px 10px 0;
+    text-transform: uppercase;
+}
+.value {
+    font-size: 25px;
+    padding: 0 10px;
+}
+.green {
+    border-radius: 8px;
+    color: black;
+	padding: 10px;
+	position: relative;
+    background-color: #66B92E;
+}
+.orange {
+    border-radius: 8px;
+    color: black;
+	padding: 10px;
+	position: relative;
+    background-color: #DA932C;
+}
+
+.red {
+    border-radius: 8px;
+    color: black;
+	padding: 10px;
+	position: relative;
+    background-color: #D65B4A;
+}

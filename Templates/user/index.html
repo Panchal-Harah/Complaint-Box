@@ -1,0 +1,439 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Complaint Box</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <!--navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light  fixed-top">
+            <div class="container">
+                <img src="{% static 'images/complainticon.webp' %}" class="images" alt="">
+                <a class="navbar-brand" href="{% url 'Home:index' %} ">
+                    <span class="text-warning">Complaint</span>Box </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#carouselExampleCaptions">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">About us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#complaint ">Complaint Registration</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#re-opencomplaint">Re-open Complaint</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#complaintstatus">Complaint Status</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#feedback">Feed Back</a>
+                        </li>
+                        {% comment %} <li class="nav-item">
+                            <div class="dropdown">
+                                <button class="btn btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"> REGISTER </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'accounts:uregistration' %}">User</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'accounts:empregistration' %}">Employee</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li> {% endcomment %}
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <button class="btn btn dropdown-toggle " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-person-lines-fill"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'accounts:U_login' %}">Login</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'accounts:U_profile' %}">Profile</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'accounts:U_logout' %}">Logout</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--navbar -->
+        <!--Carousel -->
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{% static 'images/cru1.jpg' %}" class="d-block w-100 h-100" alt="...">
+                    <div class="carousel-caption">
+                        <h5>online through complaint</h5>
+                        <p>Click on the “learn more” option of Complaint Registration and enter detail of your complaint. </p>
+                        <p>
+                            <a href="{% url 'user:online' %}" class="btn btn-warning mt-3">Learn More</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/cru2.webp' %}" class="d-block w-100 h-100" alt="...">
+                    <div class="carousel-caption">
+                        <h5>E-mail through complaint</h5>
+                        <p>You can send us an email, an excellent way to express your grievance. Just provide the below details and be assured to get your problems redressed properly.</p>
+                        <p>
+                            <a href="{% url 'user:email' %}" class="btn btn-warning mt-3">Learn More</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/cru3.webp' %}" class="d-block w-100 h-100" alt="...">
+                    <div class="carousel-caption">
+                        <h5>Phone/SMS through complaint</h5>
+                        <p>Contact our dedicated call center by dialing from landline or mobile between 24*7 to raise complaint.</p>
+                        <p>
+                            <a href="{% url 'user:phone' %}" class="btn btn-warning mt-3">Learn More</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <!--Carousel -->
+        <!-- about section -->
+        <section id="about" class="about section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-12">
+                        <div class="about-img">
+                            <img src="{% static 'images/about.webp' %}" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-12 ps-lg-5 mt-md-5">
+                        <div class="about-text">
+                            <h1>We provide best quality <br> Services Ever </h1>
+                            <p>Complaint Boxautomates entire complaint process, right from registration to closure. It also enforces service level policies to ensure the complaint gets attended within desired timeline or gets escalated to higher authorities for their attention and intervention.</p>
+                            <a href="{% url 'user:aboutus' %}" class="btn btn-warning">learn more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- about section -->
+        <!-- COMPLAINT REGISTRATION -->
+        <section id="complaint" class="complaint section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-header text-center pb-5">
+                            <h1>Our Complaints Registration</h1><br>
+                            <p>We provide complaint registration<br>from many platforms.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="cards">
+                    <div class="col-12 col md-12 col-lg-3">
+                        <div class="card text-black text-center bg-white pb-2">
+                            <div class="card-body text-dark">
+                                <img src="{% static 'images/card1ex.jpg' %}" class="card-img-top img-fluid" alt="">
+                                <h3 class="card-title">To register Complaint online through</h3>
+                                <p class="lead">Click on the “Go” option of Complaint Registration and enter detail of your complaint.</p>
+                                <a href="{% url 'user:online' %}">
+                                    <button class="btn btn-warning text-dark">Go to page</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col md-12 col-lg-3">
+                        <div class="card text-black text-center bg-white pb-2">
+                            <div class="card-body">
+                                <img src="{% static 'images/card2ex.jpg' %}" class="card-img-top img-fluid" alt="">
+                                <h3 class="card-title">To register Complaint through call</h3>
+                                <p class="lead">Contact our dedicated call center by dialing from landline or mobile between 24*7 to raise complaint. Corporation assures to provide a seamless support.</p>
+                                <a href="{% url 'user:phone' %}">
+                                    <button class="btn btn-warning text-dark">Go to page</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col md-12 col-lg-3">
+                        <div class="card text-black text-center bg-white pb-2">
+                            <div class="card-body">
+                                <img src="{% static 'images/card3.jpg' %}" class="card-img-top img-fluid" alt="">
+                                <h3 class="card-title">To register Complaint through E-mail</h3>
+                                <p class="lead">You can send us an email, an excellent way to express your grievance. Just provide the below details and be assured to get your problems redressed properly..</p>
+                                <a href="{% url 'user:email' %}">
+                                    <button class="btn btn-warning text-dark">Go to page</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col md-12 col-lg-3">
+                        <div class="card text-black text-center bg-white pb-2">
+                            <div class="card-body">
+                                <img src="{% static 'images/card4.jpg' %}" class="card-img-top img-fluid" alt="">
+                                <h3 class="card-title">To register Complaint through SMS</h3>
+                                <p class="lead">Send text “NEW COMPLAINT” to Call Centre operator. He/She will call back to take necessary details to register the complaint..</p>
+                                <a href="{% url 'user:phone' %}">
+                                    <button class="btn btn-warning text-dark">Go to page</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- COMPLAINT REGISTRATION -->
+        <!-- RE-OPEN COMPLAINT -->
+        <section id="re-opencomplaint" class="complaint section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-header text-center pb-5">
+                            <h1>Our Re-open Complaints</h1><br>
+                            <p>Here, we can open our submitted complaints
+                                 and <br> can see multiple complaints at
+                                 a same time with its details.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center" id="cards">
+                    <div class="col-6 col md-12 ">
+                        <div class="card text-white text-center bg-dark pb-2">
+                            <div class="card-body">
+                                <i class="bi bi-subtract"></i>
+                                <h3 class="card-title">Re-open Complaint online through</h3>
+                                <p class="lead">Click on the “Go” option of Complaint Re-open and enter detail of your complaint.</p>
+                                <a href="{% url 'user:reopenonilne' %}">
+                                    <button class="btn btn-warning text-dark">Go to page</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div> {% comment %} <div class="col-12 col md-12 col-lg-4">
+                        <div class="card text-white text-center bg-dark pb-2">
+                            <div class="card-body">
+                                <i class="bi bi-slack"></i>
+                                <h3 class="card-title">Re-open Complaint through Call/SMS</h3>
+                                <p class="lead">Contact our dedicated call center by dialing *********** from landline or mobile between 24*7 to raise complaint. Municipality/Corporation assures to provide a seamless support.</p>
+                                <a href="{% url 'user:reopenphone' %}">
+                                    <button class="btn btn-warning text-dark">Go to page</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col md-12 col-lg-4">
+                        <div class="card text-white text-center bg-dark pb-2">
+                            <div class="card-body">
+                                <i class="bi bi-playstation"></i>
+                                <h3 class="card-title">Re-open Complaint through E-mail</h3>
+                                <p class="lead">Contact our dedicated call center by dialing *********** from landline or mobile between 24*7 to raise complaint. Municipality/Corporation assures to provide a seamless support.</p>
+                                <a href="{% url 'user:reopenemail' %}">
+                                    <button class="btn btn-warning text-dark">Go to page</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div> {% endcomment %}
+                </div>
+            </div>
+        </section>
+        <!-- RE-OPEN COMPLAINT -->
+        <!--  COMPLAINT STATUS -->
+        <section id="complaintstatus" class="complaint section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-header text-center pb-5">
+                            <h1>Our Complaints Status</h1><br>
+                            <p>Compliant Status can check <br>through online and sms/call</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="cards">
+                    <div class="col-12 col md-12 col-lg-6">
+                        <div class="card text-white text-center bg-dark pb-2">
+                            <div class="card-body">
+                                <i class="bi bi-layers-half"></i>
+                                <h3 class="card-title">Complaints Status online through</h3>
+                                <p class="lead">Click on the “Go” option of Complaint Status and enter detail of your complaint.</p>
+                                <a href="{% url 'user:statusonline' %}">
+                                    <button class="btn btn-warning text-dark">Go to page</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col md-12 col-lg-6">
+                        <div class="card text-white text-center bg-dark pb-2">
+                            <div class="card-body">
+                                <i class="bi bi-envelope-paper-fill"></i>
+                                <h3 class="card-title">Complaint Status through Call/SMS</h3>
+                                <p class="lead">Contact our dedicated call center by dialing ************ from landline or mobile between 24*7 to raise complaint. NGO assures to provide a seamless support.</p>
+                                <a href="{% url 'user:statusphone' %}">
+                                    <button class="btn btn-warning text-dark">Go to page</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--  COMPLAINT STATUS -->
+        <!-- FEEDBACK -->
+        <section id="feedback" class="complaint section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-header text-center pb-5">
+                            <h1>Our Feedback</h1><br>
+                            <p>You can gives us your opinion<br> 
+                                to make work this website more efficiently </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center" id="cards">
+                    <div class="col-6 col md-12">
+                        <div class="card text-white text-center bg-dark pb-2">
+                            <div class="card-body">
+                                <i class="bi bi-bookmarks-fill"></i>
+                                <h3 class="card-title">Opinion</h3>
+                                <a href="{% url 'user:opinion' %}">
+                                    <button class="btn btn-warning text-dark mt-4">Go to page</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div> {% comment %} <div class="col-12 col md-12 col-lg-6">
+                        <div class="card text-white text-center bg-dark pb-2">
+                            <div class="card-body">
+                                <i class="bi bi-gear-wide-connected"></i>
+                                <h3 class="card-title">Complaint Rating</h3>
+                                <a href="{% url 'user:rating' %}">
+                                    <button class="btn btn-warning text-dark mt-4">Go to page</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div> {% endcomment %}
+                </div>
+            </div>
+        </section>
+        <!-- FEEDBACK -->
+        <!-- Footer -->
+        <footer class="bg-dark text-center text-white">
+            <!-- Grid container -->
+            <div class="container p-4">
+                <!-- Section: Text -->
+                <h3>
+                    <img src="{% static 'images/complainticon.webp' %}" class="images" alt="">Complaint Box
+                </h3>
+                <br />
+                <section>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p class="text-start"> The Complaint Boxis a web based enterprise solution enhance citizen satisfaction through comprehensive service management and efficient service delivery. Complaint Boxautomates entire complaint process, right from registration to closure. It also enforces service level policies to ensure the complaint gets attended within desired timeline or gets escalated to higher authorities for their attention and intervention. </p>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Section: Text -->
+                <!-- Section: Links -->
+                <section class="">
+                    <!--Grid row-->
+                    <div class="row">
+                        <!--Grid column-->
+                        <div class="col-lg-3 col-md-6 mb-4 mb-md-0 border-end">
+                            <h5 class="text-uppercase text-start">complaint Registration</h5>
+                            <ul class="list-unstyled mb-0 text-start">
+                                <li>
+                                    <a href="{% url 'user:online' %}" class="text-white text-decoration-none">Online</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'user:email' %}" class="text-white text-decoration-none">Through Email</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'user:phone' %}" class="text-white text-decoration-none">Through phone/SMS</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--Grid column-->
+                        <!--Grid column-->
+                        <div class="col-lg-3 col-md-6 mb-4 mb-md-0 border-end ">
+                            <h5 class="text-uppercase text-start">Re-open Complaint</h5>
+                            <ul class="list-unstyled mb-0 text-start"> {% comment %} <li>
+                                    <a href="{% url 'user:reopenemail' %}" class="text-white text-decoration-none">Through Email</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'user:reopenphone' %}" class="text-white text-decoration-none">Through phone/SMS</a>
+                                </li> {% endcomment %} <li>
+                                    <a href="{% url 'user:reopenonilne' %}" class="text-white text-decoration-none">Through Online</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--Grid column-->
+                        <!--Grid column-->
+                        <div class="col-lg-3 col-md-6 mb-4 mb-md-0 border-end">
+                            <h5 class="text-uppercase text-start">Complaint Status</h5>
+                            <ul class="list-unstyled mb-0 text-start">
+                                <li>
+                                    <a href="{% url 'user:statusonline' %}" class="text-white text-decoration-none">Through Online</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'user:statusphone' %}" class="text-white text-decoration-none">Through Phone/SMS</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--Grid column-->
+                        <!--Grid column-->
+                        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                            <h5 class="text-uppercase text-start">Feed back</h5>
+                            <ul class="list-unstyled mb-0 text-start">
+                                <li>
+                                    <a href="{% url 'user:opinion' %}" class="text-white text-decoration-none">Opinion</a>
+                                </li> {% comment %} <li>
+                                    <a href="{% url 'user:rating' %}" class="text-white text-decoration-none">Complaint Rating</a>
+                                </li> {% endcomment %} <li>
+                                    <a href="{% url 'user:aboutus' %}" class="text-white text-decoration-none">About Us</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--Grid column-->
+                    </div>
+                    <!--Grid row-->
+                </section>
+                <!-- Section: Links -->
+            </div>
+            <!-- Grid container -->
+            <br />
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);"> © 2022 Copyright: <a class="text-white text-decoration-none" href="{% url 'Home:index' %} ">Complaint Box</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+        <!-- Footer -->
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    </body>
+</html>
